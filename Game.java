@@ -40,7 +40,7 @@ public class Game {
                 break;
             case 1: // num input
                 System.out.print("Your choice: ");
-                input = UI.nextLine();
+                input = UI.next();
                 // if the input is a number, convert it to int (so that words don't break the
                 // game)
                 if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")
@@ -77,17 +77,9 @@ public class Game {
         System.out.println(X.getName() + "'s Turn: ");
         System.out.println("Place your symbol: (select a number)");
 
-        // to print options
-        for (int b = 0; b <= 8; b++) {
-            if (positions[b] > 0) {
-                System.out.println("[-] position #" + (b + 1));
-            } else {
-                System.out.println("[" + (b + 1) + "] position #" + (b + 1));
-            }
-        }
-
+        printPositions();
         // to choose
-        while (error) {
+        while(error) {
             input(1);
             // to choose
             if (choice >= 1 && choice <= 9) {
@@ -100,9 +92,20 @@ public class Game {
             } else {
                 System.out.println("[!] Invalid input, please try again");
             }
-        }
+        } 
 
         error = true;
+    }
+
+    private static void printPositions() {
+        // to print options
+        for (int b = 0; b <= 8; b++) {
+            if (positions[b] > 0) {
+                System.out.println("[-] position #" + (b + 1));
+            } else {
+                System.out.println("[" + (b + 1) + "] position #" + (b + 1));
+            }
+        }
     }
 
     public static void addMark(int[] arr, Player X, int choice) {
